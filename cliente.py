@@ -1,3 +1,4 @@
+from inspect import isdatadescriptor
 from logging import root, setLogRecordFactory, setLoggerClass
 from typing import Text
 from kivy.core import camera
@@ -7,7 +8,6 @@ from kivymd.uix import button
 from kivymd.uix.label import MDLabel
 from kivymd.uix.boxlayout import MDBoxLayout
 from kivy_garden.mapview import MapView, MapSource
-from kivy.uix.camera import Camera
 from kivymd.uix.dialog import MDDialog
 from kivymd.uix.button import MDFlatButton, MDRaisedButton
 import random
@@ -20,22 +20,17 @@ from kivymd.theming import ThemeManager
 
 class Box(MDBoxLayout):
     #Se crean los metodos que usen los botones
-    def confirm_service(self):
-        pass
-
-
-    def calc(self, cadena):
-        n = len(cadena)*800
-        self.ids.total.text = n
-        
+    # 
+    def nuevo_servicio(self, *args):
+        self.ids.screen.current = "Principal"
 
     def take_photo(self, *args):
         print("Take it")
         self.ids.camara.export_to_png("./scanned/selfie.png")
         try:
-            # p = funciones.qrdecode("./scanned/selfie.png")
-            # codigo = p[0].data.decode('ascii')
-            # print(codigo)
+            p = funciones.qrdecode("./scanned/selfie.png")
+            codigo = p[0].data.decode('ascii')
+            print(codigo)
             self.ids.screen.current = 'Formulario'
         except:
             dialog = MDDialog(text = "Código invalido, intente de nuevo",
@@ -48,12 +43,8 @@ class Box(MDBoxLayout):
                     ),
                 ],
             )
-            dialog.open() 
-        
+            dialog.open()      
             
-        
-
-
 class ClienteApp(MDApp):
     def callback(self, instance):
         if  instance.icon == "qrcode":

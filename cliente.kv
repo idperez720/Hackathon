@@ -97,13 +97,12 @@
                             helper_text_mode: "on_focus"
                             size_hint: .8, .1
                             pos_hint: {"center_x": .5, "center_y": .5}
-                            on_text: root.calc(self.text)
 
                 BoxLayout:
                     orientation: 'vertical'
                     MDLabel:
                         id: 'total'
-                        text: "Total: "
+                        text: "Total: $24.500 "
                         halign: 'right'
 
                 MDFillRoundFlatIconButton:
@@ -111,6 +110,7 @@
                     text: "Confirmar"
                     pos_hint: {"center_x": .5, "center_y": .5}
                     valign: 'bottom'
+                    on_release: root.nuevo_servicio()
 
                 
 
