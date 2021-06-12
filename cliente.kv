@@ -9,7 +9,7 @@
             MDBoxLayout:
                 orientation: "vertical"
                 MDToolbar:
-                    title : "Toolbar"
+                    title : "Usuario"
 
                 MDBottomNavigation:
                     MDBottomNavigationItem:
@@ -87,6 +87,12 @@
                             font_style: "Subtitle1"
                             size_hint: .5, .05
                             valign: 'center'
+                        MDLabel:
+                            id: codigo_servicio
+                            text: "Datos del viaje:"
+                            font_style: "Subtitle1"
+                            size_hint: .5, .05
+                            valign: 'center'
                     BoxLayout:
                         orientation:'vertical'
                         MDTextFieldRound:
@@ -110,7 +116,7 @@
                     text: "Confirmar"
                     pos_hint: {"center_x": .5, "center_y": .5}
                     valign: 'bottom'
-                    on_release: root.nuevo_servicio()
+                    on_release: root.ids.screen.current = "Principal"
 
                 
 

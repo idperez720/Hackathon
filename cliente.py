@@ -20,30 +20,16 @@ from kivymd.theming import ThemeManager
 
 class Box(MDBoxLayout):
     #Se crean los metodos que usen los botones
-    # 
-    def nuevo_servicio(self, *args):
-        self.ids.screen.current = "Principal"
+
 
     def take_photo(self, *args):
         print("Take it")
         self.ids.camara.export_to_png("./scanned/selfie.png")
-        try:
-            p = funciones.qrdecode("./scanned/selfie.png")
-            codigo = p[0].data.decode('ascii')
-            print(codigo)
-            self.ids.screen.current = 'Formulario'
-        except:
-            dialog = MDDialog(text = "Código invalido, intente de nuevo",
-            buttons=[
-                    MDFlatButton(
-                        text="CANCEL", text_color=(1,1,1,1)
-                    ),
-                    MDRaisedButton(
-                        text="OK", text_color=(1,1,1,1)
-                    ),
-                ],
-            )
-            dialog.open()      
+        p = funciones.qrdecode("./scanned/selfie.png")
+        codigo = p[0].data.decode('ascii')
+        print(codigo)
+        self.ids.codigo_servicio.text = codigo
+        self.ids.screen.current = 'Formulario'      
             
 class ClienteApp(MDApp):
     def callback(self, instance):
