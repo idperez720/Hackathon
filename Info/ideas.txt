@@ -1,0 +1,13 @@
+Funcionalidades Cliente
+- Leer un codigo QR
+- Abrir un formulario
+- Llenar un formulario
+- Calcular la tarifa del viaje
+- Enviar datos al conductor
+
+Funcionalidades Conductor
+- Observar zonas con demanda
+- Aceptar servicio
+- Generar codigo QR al aceptar un servicio
+- Recibir los datos del servicio.
+- Abrir una aplicación externa de navegación gps.

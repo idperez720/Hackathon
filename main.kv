@@ -1,0 +1,210 @@
+#:kivy 2.0.0
+<Box>:
+    BoxLayout:
+        orientation:'vertical'
+        MDToolbar:
+            title: "Taxis libres"
+            #left_action_items:[["menu", lambda x: app.root.toogle_nav_drawer()]]
+
+        MDBottomNavigation:
+            panel_color: .2, .2, .2, 1
+ 
+            MDBottomNavigationItem:
+
+                name: 'Perfil'
+                text: 'Perfil'
+                icon: 'face'
+
+                MDBackdrop:
+                    id: backdrop
+                    left_action_items: [['menu', lambda x: self.open()]]
+                    title: "Identificación del conductor"
+                    radius_left: "25dp"
+                    radius_right: "0dp"
+                    header_text: "Información del conductor:"
+
+                    MDBackdropBackLayer:
+                        id: backlayer
+                        orientation: 'vertical'
+                        MDLabel:
+                            text: "Código: 123456"
+                            font_style:"H6"
+                            halign: 'center'
+                            pos_hint: {"center_x": 0.5}
+                            size_hint: .3, .1
+                            theme_text_color: "Custom"
+                            text_color: 1, 1, 1, 1
+                        Image:
+                            size_hint: .8, .6
+                            source: "./images/QR.png"
+                            pos_hint: {"center_x": .5, "center_y": .6}
+                            allow_stretch: True
+                            keep_ratio: True 
+                            size_hint: 1, .7
+                                
+                        
+
+                    MDBackdropFrontLayer:
+                        backdrop: backdrop
+                        orientation: 'vertical'
+                        Image:
+                            source: "./images/sebas.jpg"
+                            size_hint: 1, 1.5
+                            allow_stretch: True
+                            keep_ratio: True
+
+                        ScrollView:
+                            GridLayout:
+                                id:container_y
+                                size_hint_y: None
+                                cols: 1
+                                row_default_height: root.height*0.1
+                                height: self.minimum_height 
+
+                                BoxLayout:
+                                    orientation: 'horizontal'
+                                    MDLabel:
+                                        text: "Nombre:"
+                                        font_style: "Subtitle1"
+                                        size_hint: .3, .1
+                                    MDLabel:
+                                        text: "Sebastian Murcia"
+                                        font_style: "Subtitle2"
+                                        size_hint: .5, .1
+
+                                BoxLayout:
+                                    orientation: 'horizontal'
+                                    MDLabel:
+                                        text: "Cédula:"
+                                        font_style: "Subtitle1"
+                                        size_hint: .3, .1
+                                    MDLabel:
+                                        text: "123456789"
+                                        font_style: "Subtitle2"
+                                        size_hint: .5, .1
+                                
+                                BoxLayout:
+                                    orientation: 'horizontal'
+                                    MDLabel:
+                                        text: "Edad"
+                                        font_style: "Subtitle1"
+                                        size_hint: .3, .1
+                                    MDLabel:
+                                        text: "20"
+                                        font_style: "Subtitle2"
+                                        size_hint: .5, .1
+                                
+                                BoxLayout:
+                                    orientation: 'horizontal'
+                                    MDLabel:
+                                        text: "Teléfono:"
+                                        font_style: "Subtitle1"
+                                        size_hint: .3, .1
+                                    MDLabel:
+                                        text: "3008001212"
+                                        font_style: "Subtitle2"
+                                        size_hint: .5, .1
+                            
+                                BoxLayout:
+                                    orientation: 'horizontal'
+                                    MDLabel:
+                                        text: "Fecha de Nacimiento: "
+                                        font_style: "Subtitle1"
+                                        size_hint: .3, .1
+                                    MDLabel:
+                                        text: "12/06/2001"
+                                        font_style: "Subtitle2"
+                                        size_hint: .5, .1
+                                    
+                                MDRectangleFlatIconButton:
+                                    icon: "hand"
+                                    text: "Solicitar servicio"
+                                    pos_hint: {"center_x": .5, "center_y": .5}
+                                    on_press: root.gen_service()
+
+
+                            
+                                    
+                              
+
+            MDBottomNavigationItem:
+                name: 'Mapa'
+                text: 'Mapa'
+                icon: 'google-maps'           
+                BoxLayout:
+                    orientation:'vertical'
+                    MapView:
+                        lat: 4.6021224231971765
+                        lon: -74.06625656398636
+                        zoom: 13
+                        double_tap_zoom: True
+                        size_hint: (1, 1)
+                        MapMarkerPopup:
+                            id: "mark1"
+                            lat: 4.6021224231971765
+                            lon: -74.06625656398636
+                            source: "./images/market4.png"
+                            Button:
+                                text: "30 posibles\n servicios" 
+                        MapMarkerPopup:
+                            id: "mark2"
+                            lat: 4.614497100651084 
+                            lon: -74.06684166657806
+                            source: "./images/market4.png"
+                            Button:
+                                text: "30 posibles\n servicios" 
+                        MapMarkerPopup:
+                            id: "mark3"
+                            lat: 4.686182669523318
+                            lon: -74.12634214511927
+                            source: "./images/market4.png"
+                            Button:
+                                text: "30 posibles\n servicios" 
+                        MapMarkerPopup:
+                            id: "mark4"
+                            lat: 4.6161102 
+                            lon: -74.182788
+                            source: "./images/market4.png"
+                            Button:
+                                text: "30 posibles\n servicios" 
+                            
+                        MapMarkerPopup:
+                            id: "mark5"
+                            lat: 4.677449
+                            lon: -74.049892
+                            source: "./images/market4.png"
+                            Button:
+                                text: "30 posibles\n servicios"  
+                    
+                        
+
+                    MDRectangleFlatIconButton:
+                        text: "Predecir"
+                        icon: "reload"
+                        pos_hint:{"center_x": 0.5}
+                    
+                    
+                
+
+
+
+
+            MDBottomNavigationItem:
+                name: 'QR'
+                text: 'Codigo QR'
+                icon: 'qrcode'
+                BoxLayout:
+                    orientation:'vertical'
+                    Image:
+                        id: qr_code
+                        allow_stretch: True
+                        keep_ratio: True 
+                    MDLabel:
+                        id: service_label
+                        halign: "center"
+                        valing: "bottom"
+                        font_size:20
+                        size_hint: (1, .2)
+
+
+
